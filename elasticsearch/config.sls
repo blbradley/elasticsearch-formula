@@ -7,6 +7,7 @@ elasticsearch_cfg:
 {%- if salt['pillar.get']('elasticsearch:config', {}) %}
     - dataset_pillar: elasticsearch:config
 {%- endif %}
+    - formatter: yaml
     - user: root
     - require:
       - sls: elasticsearch.pkg
