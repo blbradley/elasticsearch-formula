@@ -4,8 +4,9 @@ include:
 elasticsearch_cfg:
   file.managed:
     - name: /etc/elasticsearch/elasticsearch.yml
-    - source: salt://elasticsearch/files/elasticsearch.yml
-    - template: jinja
+{%- if salt['pillar.get']('elasticsearch:config', {}) %}
+    - contents_pillar: elasticsearch:config
+{%- endif %}
     - user: root
     - require:
       - sls: elasticsearch.pkg
