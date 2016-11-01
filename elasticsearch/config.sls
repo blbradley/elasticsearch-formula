@@ -4,9 +4,7 @@ include:
 elasticsearch_cfg:
   file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
-{%- if salt['pillar.get']('elasticsearch:config', {}) %}
     - dataset_pillar: elasticsearch:config
-{%- endif %}
     - formatter: yaml
     - user: root
     - require:
