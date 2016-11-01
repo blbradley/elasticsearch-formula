@@ -2,10 +2,10 @@ include:
   - elasticsearch.pkg
 
 elasticsearch_cfg:
-  file.managed:
+  file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
 {%- if salt['pillar.get']('elasticsearch:config', {}) %}
-    - contents_pillar: elasticsearch:config
+    - dataset_pillar: elasticsearch:config
 {%- endif %}
     - user: root
     - require:
